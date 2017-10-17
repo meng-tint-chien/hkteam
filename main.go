@@ -23,7 +23,14 @@ func main() {
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
-
+		imageURL := "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg"
+		template := linebot.NewButtonsTemplate(
+			imageURL, "My button sample", "Hello, my button",
+			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
+			linebot.NewPostbackTemplateAction("Say hello1", "hello ", ""),
+			linebot.NewPostbackTemplateAction(" hello2", "", "hello "),
+			linebot.NewMessageTemplateAction("Say message", "Rice="),
+		)
 	if err != nil {
 		if err == linebot.ErrInvalidSignature {
 			w.WriteHeader(400)
@@ -37,7 +44,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken,'123').Do(); err != nil {
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTemplateMessage("Carousel alt text", template)).Do(); err != nil {
 					log.Print(err)
 				}
 			}
