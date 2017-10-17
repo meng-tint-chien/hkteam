@@ -41,6 +41,21 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					log.Print(err)
                                  	
 				}
+			case "buttons":
+			imageURL :=  "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg"
+			template := linebot.NewButtonsTemplate(
+			imageURL, "My button sample", "Hello, my button",
+			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
+			linebot.NewPostbackTemplateAction("Say hello1", "hello ?????", ""),
+			linebot.NewPostbackTemplateAction("ие hello2", "hello ?????", "hello ?????"),
+			linebot.NewMessageTemplateAction("Say message", "Rice=ж╠"),
+			)
+			if _, err := app.bot.ReplyMessage(
+			replyToken,
+			linebot.NewTemplateMessage("Buttons alt text", template),
+			).Do(); err != nil {
+			return err
+			}
 			}
 		}
 	}
