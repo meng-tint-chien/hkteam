@@ -14,7 +14,7 @@ var bot *linebot.Client
 
 func main() {
 	var err error
-	var guu=0
+	
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
 	http.HandleFunc("/callback", callbackHandler)
@@ -24,6 +24,7 @@ func main() {
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
+	var guu = 0
 	events, err := bot.ParseRequest(r)
 		
 	if err != nil {
