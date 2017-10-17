@@ -41,7 +41,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImagemapMessage(
 				"https://simg314.magcasa.com/content_images/2015/11/02/171645/1446432316_3717.jpg",
 				"Imagemap alt text",
-				linebot.ImagemapBaseSize{1040, 1040},
+				linebot.ImagemapBaseSize{520, 520},
 				linebot.NewMessageImagemapAction("URANAI!", linebot.ImagemapArea{520, 520, 520, 520}),
 			),).Do(); err != nil {
 						log.Print(err)
