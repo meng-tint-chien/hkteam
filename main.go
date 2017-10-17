@@ -21,7 +21,7 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
-func callbackHandler(w http.ResponseWriter, r *http.Request, replyToken string) {
+func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
 
 	if err != nil {
@@ -47,7 +47,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request, replyToken string) 
 				linebot.NewMessageTemplateAction("Say message", "Rice="),
 				)
 				if _, err := bot.ReplyMessage(
-				replyToken,
+				"123",
 				linebot.NewTemplateMessage("Buttons alt text", template),
 			).Do(); err != nil {
 				return err
