@@ -41,7 +41,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
     				"type": "image",
    				 "originalContentUrl": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg",
     				"previewImageUrl": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg"
-				}
+				};
 				
 			}
 		}
