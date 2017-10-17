@@ -14,11 +14,7 @@ import (
 var bot *linebot.Client
 
 func main() {
-	app, err := NewKitchenSink(
-		os.Getenv("CHANNEL_SECRET"),
-		os.Getenv("CHANNEL_TOKEN"),
-		os.Getenv("APP_BASE_URL"),
-	)
+	
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -51,7 +47,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			imageURL, "My button sample", "Hello, my button",
 			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
 			linebot.NewPostbackTemplateAction("Say hello1", "hello ", ""),
-			linebot.NewPostbackTemplateAction("ие hello2", "hello ", "hello "),
+			linebot.NewPostbackTemplateAction("hello2", "hello ", "hello "),
 			linebot.NewMessageTemplateAction("Say message", "Rice="),
 		)
 		if _, err := app.bot.ReplyMessage(
@@ -61,6 +57,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			return err
 		}
 
+	return nil
 }
 
 
