@@ -14,7 +14,7 @@ var bot *linebot.Client
 
 func main() {
 	var err error
-	
+	var guu=0
 	bot, err = linebot.New(os.Getenv("ChannelSecret"), os.Getenv("ChannelAccessToken"))
 	log.Println("Bot:", bot, " err:", err)
 	http.HandleFunc("/callback", callbackHandler)
@@ -41,8 +41,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			case *linebot.TextMessage:
 				if message.Text=="fuck"{
 					 jj:= rand.New(rand.NewSource(time.Now().UnixNano()))
-					
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+((jj.Intn(55))+44)+".jpg","https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+((jj.Intn(55))+44)+".jpg")).Do(); err != nil {
+					guu=(jj.Intn(55))+44
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+guu+".jpg","https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+guu+".jpg")).Do(); err != nil {
 						log.Print(err)
 					}
 				}
