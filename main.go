@@ -37,15 +37,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				imageURL :="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg"
-				template := linebot.NewCarouselTemplate(
-				linebot.NewCarouselColumn(
-				imageURL, "", "",
-				linebot.NewURITemplateAction("", ""),
-				linebot.NewPostbackTemplateAction("", "", message.Text),
-				),
-				)
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTemplateMessage("Carousel alt text", template)).Do(); err != nil {
+				
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg","http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg")).Do(); err != nil {
 					log.Print(err)
 				}
 			}
