@@ -1,4 +1,4 @@
-﻿package main
+package main
 
 import (
 	"fmt"
@@ -37,7 +37,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if message.Text=="��"{
+				if message.Text=="fuck"{
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://yt3.ggpht.com/-9NvD-6i9toM/AAAAAAAAAAI/AAAAAAAAAAA/GE9FIajPWO8/s48-c-k-no-mo-rj-c0xffffff/photo.jpg","https://yt3.ggpht.com/-9NvD-6i9toM/AAAAAAAAAAI/AAAAAAAAAAA/GE9FIajPWO8/s48-c-k-no-mo-rj-c0xffffff/photo.jpg")).Do(); err != nil {
 						log.Print(err)
 					}
