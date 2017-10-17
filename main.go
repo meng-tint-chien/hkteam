@@ -37,7 +37,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.SendImage("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg")).Do(); err != nil {
+				if _, err = bot.replyImagemap("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg").Do(); err != nil {
 					log.Print(err)
 				}
 			}
