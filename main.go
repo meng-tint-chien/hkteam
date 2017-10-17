@@ -57,8 +57,15 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			return err
 		}
 
-	return nil
+	default:
+		log.Printf("Echo message to %s: %s", replyToken, message.Text)
+		if _, err := app.bot.ReplyMessage(
+			replyToken,
+			linebot.NewTextMessage(message.Text),
+		).Do(); err != nil {
+			return err
+		}
+	}
+return nil
 }
-
-
 
