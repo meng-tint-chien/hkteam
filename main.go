@@ -56,7 +56,7 @@ func handleText(message *linebot.TextMessage, replyToken string, source *linebot
 			linebot.NewPostbackTemplateAction(" hello2", "hello ", "hello "),
 			linebot.NewMessageTemplateAction("Say message", "Rice="),
 		)
-		if _, err := app.bot.ReplyMessage(
+		if _, err := bot.ReplyMessage(
 			replyToken,
 			linebot.NewTemplateMessage("Buttons alt text", template),
 		).Do(); err != nil {
@@ -65,7 +65,7 @@ func handleText(message *linebot.TextMessage, replyToken string, source *linebot
 	
 	default:
 		log.Printf("Echo message to %s: %s", replyToken, message.Text)
-		if _, err := app.bot.ReplyMessage(
+		if _, err := bot.ReplyMessage(
 			replyToken,
 			linebot.NewTextMessage(message.Text),
 		).Do(); err != nil {
