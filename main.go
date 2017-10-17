@@ -89,30 +89,12 @@ func (app *KitchenSink) Callback(w http.ResponseWriter, r *http.Request) {
 		switch event.Type {
 		case linebot.EventTypeMessage:
 			switch message := event.Message.(type) {
-			case *linebot.TextMessage:
-				if err := app.handleText(message, event.ReplyToken, event.Source); err != nil {
-					log.Print(err)
-				}
+			
 			case *linebot.ImageMessage:
 				if err := app.handleImage(message, event.ReplyToken); err != nil {
 					log.Print(err)
 				}
-			case *linebot.VideoMessage:
-				if err := app.handleVideo(message, event.ReplyToken); err != nil {
-					log.Print(err)
-				}
-			case *linebot.AudioMessage:
-				if err := app.handleAudio(message, event.ReplyToken); err != nil {
-					log.Print(err)
-				}
-			case *linebot.LocationMessage:
-				if err := app.handleLocation(message, event.ReplyToken); err != nil {
-					log.Print(err)
-				}
-			case *linebot.StickerMessage:
-				if err := app.handleSticker(message, event.ReplyToken); err != nil {
-					log.Print(err)
-				}
+			
 			default:
 				log.Printf("Unknown message: %v", message)
 			}
