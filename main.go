@@ -37,7 +37,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				{
+				bot.replyImage{
     				"type": "image",
    				 "originalContentUrl": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg",
     				"previewImageUrl": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg"
