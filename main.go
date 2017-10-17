@@ -37,12 +37,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				bot.replyImage{
-    				"1",
-   				'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg',
-    				'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg'
-				};
-				
+				if _, err = bot.ReplyMessage(event.ReplyToken,'123').Do(); err != nil {
+					log.Print(err)
+				}
 			}
 		}
 	}
