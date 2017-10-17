@@ -43,7 +43,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				imageURL, "", "",
 				linebot.NewURITemplateAction("", ""),
 				linebot.NewPostbackTemplateAction("", "", message.Text),
-				)
+				),
 				)
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTemplateMessage("Carousel alt text", template)).Do(); err != nil {
 					log.Print(err)
