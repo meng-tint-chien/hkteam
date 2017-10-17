@@ -37,22 +37,13 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
+				{
+    				"type": "image",
+   				 "originalContentUrl": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg",
+    				"previewImageUrl": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg"
+				}
 				
-				imageURL := "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg"
-				template := linebot.NewButtonsTemplate(
-				imageURL, "My button sample", "Hello, my button",
-				linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
-				linebot.NewPostbackTemplateAction("Say hello1", "hello ", ""),
-				linebot.NewPostbackTemplateAction("hello2", "hello ", "hello "),
-				linebot.NewMessageTemplateAction("Say message", "Rice="),
-				)
-				if _, err := bot.ReplyMessage(
-				"123",
-				linebot.NewTemplateMessage("Buttons alt text", template),
-			).Do(); err != nil {
-				return err
 			}
-			
 		}
 	}
 }
