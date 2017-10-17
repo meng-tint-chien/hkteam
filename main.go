@@ -14,8 +14,12 @@ import (
 var bot *linebot.Client
 
 func main() {
-	var err error
 	
+	app, err := NewKitchenSink(
+		os.Getenv("CHANNEL_SECRET"),
+		os.Getenv("CHANNEL_TOKEN"),
+		os.Getenv("APP_BASE_URL"),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -38,6 +42,32 @@ type KitchenSink struct {
 	bot         *linebot.Client
 	appBaseURL  string
 	downloadDir string
+}
+func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*KitchenSink, error) {
+	apiEndpointBase := os.Getenv("ENDPOINT_BASE")
+	if apiEndpointBase == "" {
+		apiEndpointBase = linebot.APIEndpointBase
+	}
+	bot, err := linebot.New(
+		channelSecret,
+		channelToken,
+		linebot.WithEndpointBase(apiEndpointBase), // Usually you omit this.
+	)
+	if err != nil {
+		return nil, err
+	}
+	downloadDir := filepath.Join(filepath.Dir(os.Args[0]), "line-bot")
+	_, err = os.Stat(downloadDir)
+	if err != nil {
+		if err := os.Mkdir(downloadDir, 0777); err != nil {
+			return nil, err
+		}
+	}
+	return &KitchenSink{
+		bot:         bot,
+		appBaseURL:  appBaseURL,
+		downloadDir: downloadDir,
+	}, nil
 }
 func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken string, source *linebot.EventSource) error {
 	switch message.Text {
