@@ -42,7 +42,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				linebot.NewCarouselColumn(
 			imageURL, "hoge", "fuga",
 			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
-			linebot.NewPostbackTemplateAction("Say hello1", "hello ", ""),
+			linebot.NewPostbackTemplateAction("Say hello1", "hello ", message.Text),
 			),
 			linebot.NewCarouselColumn(
 			imageURL, "hoge", "fuga",
