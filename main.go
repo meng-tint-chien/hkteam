@@ -33,27 +33,25 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
+
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
 
-	if err != nil {
-		if err == linebot.ErrInvalidSignature {
-			w.WriteHeader(400)
-		} else {
-			w.WriteHeader(500)
-		}
-		return
-	}
-
-	for _, event := range events {
-		if event.Type == linebot.EventTypeMessage {
-			switch message := event.Message.(type) {
-			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.Text)).Do(); err != nil {
-					log.Print(err)
-				}
-			}
-		}
-	}
+	var request = require("request");
+  var fs = require("fs");
+  var cheerio = require("cheerio");
+  request({
+    url: "http://blog.infographics.tw",
+    method: "GET"
+  }, function(e,r,b) {
+    if(e || !b) { return; }
+    var $ = cheerio.load(b);
+    var result = [];
+    var titles = $("li.item h2");
+    for(var i=0;i<titles.length;i++) {
+      result.push($(titles[i]).text());
+    }
+    fs.writeFileSync("result.json", JSON.stringify(result));
+  });
 }
 
