@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-
+	"math/rand"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
