@@ -21,26 +21,9 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
-func callbackHandler(w http.ResponseWriter, r *http.Request) {
-	events, err := bot.ParseRequest(r)
 
-	if err != nil {
-		if err == linebot.ErrInvalidSignature {
-			w.WriteHeader(400)
-		} else {
-			w.WriteHeader(500)
-		}
-		return
-	}
-
-	for _, event := range events {
-		if event.Type == linebot.EventTypeMessage {
-			switch message := event.Message.(type) {
-			case *linebot.TextMessage:
-				if _, err = bot.replyImagemap.baseUrl("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg").Do(); err != nil {
-					log.Print(err)
-				}
-			}
-		}
-	}
-}
+client.replyImage(
+  REPLY_TOKEN,
+  'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg',
+  'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg'
+);
