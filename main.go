@@ -21,9 +21,12 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
+func callbackHandler(w http.ResponseWriter, r *http.Request) {
+	events, err := bot.ParseRequest(r)
 
-client.replyImage(
+	client.replyImage(
   REPLY_TOKEN,
   'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg',
   'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg'
 );
+}
