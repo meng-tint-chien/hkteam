@@ -1,14 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"io"
-	"io/ioutil"
+	
 	"log"
 	"net/http"
 	"os"
-	"os/exec"
-	"path/filepath"
+	
+	
 
 	"github.com/line/line-bot-sdk-go/linebot"
 )
@@ -39,7 +37,11 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
+type KitchenSink struct {
+	bot         *linebot.Client
+	appBaseURL  string
+	downloadDir string
+}
 func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken string, source *linebot.EventSource) error {
 	switch message.Text {
 	
@@ -48,9 +50,9 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		template := linebot.NewButtonsTemplate(
 			imageURL, "My button sample", "Hello, my button",
 			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
-			linebot.NewPostbackTemplateAction("Say hello1", "hello ?????", ""),
-			linebot.NewPostbackTemplateAction("ие hello2", "hello ?????", "hello ?????"),
-			linebot.NewMessageTemplateAction("Say message", "Rice=ж╠"),
+			linebot.NewPostbackTemplateAction("Say hello1", "hello ", ""),
+			linebot.NewPostbackTemplateAction("ие hello2", "hello ", "hello "),
+			linebot.NewMessageTemplateAction("Say message", "Rice="),
 		)
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
