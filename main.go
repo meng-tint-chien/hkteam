@@ -14,6 +14,7 @@ import (
 var bot *linebot.Client
 
 func main() {
+	var err error
 	
 	if err != nil {
 		log.Fatal(err)
