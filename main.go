@@ -37,7 +37,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				imageURL := "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_2.jpg"
+				imageURL := "https://yt3.ggpht.com/-bVSTrRvaxec/AAAAAAAAAAI/AAAAAAAAAAA/If6kgKIB4Jo/s48-c-k-no-mo-rj-c0xffffff/photo.jpg"
 				template := linebot.NewButtonsTemplate(
 				imageURL, "My button sample", "Hello, my button",
 				linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
