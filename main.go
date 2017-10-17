@@ -36,11 +36,6 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	for _, event := range events {
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
-			case *linebot.TextMessage:
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK!"+0x100078)).Do(); err != nil {
-					log.Print(err)
-                                 	
-				}
 			case "buttons":
 			imageURL :=  "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg"
 			template := linebot.NewButtonsTemplate(
@@ -50,12 +45,13 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			linebot.NewPostbackTemplateAction("ие hello2", "hello ?????", "hello ?????"),
 			linebot.NewMessageTemplateAction("Say message", "Rice=ж╠"),
 			)
-			if _, err := app.bot.ReplyMessage(
-			replyToken,
-			linebot.NewTemplateMessage("Buttons alt text", template),
-			).Do(); err != nil {
-			return err
-			}
+			case *linebot.TextMessage:
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK!"+0x100078)).Do(); err != nil {
+					log.Print(err)
+                                 	
+				}
+			
+			
 			}
 		}
 	}
