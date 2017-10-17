@@ -38,7 +38,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				message.Text="1"
-				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg","http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_1.jpg")).Do(); err != nil {
+				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://yt3.ggpht.com/-9NvD-6i9toM/AAAAAAAAAAI/AAAAAAAAAAA/GE9FIajPWO8/s48-c-k-no-mo-rj-c0xffffff/photo.jpg","https://yt3.ggpht.com/-9NvD-6i9toM/AAAAAAAAAAI/AAAAAAAAAAA/GE9FIajPWO8/s48-c-k-no-mo-rj-c0xffffff/photo.jpg")).Do(); err != nil {
 					log.Print(err)
 				}
 			}
