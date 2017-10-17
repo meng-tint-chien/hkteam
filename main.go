@@ -21,7 +21,7 @@ func main() {
 	http.ListenAndServe(addr, nil)
 }
 
-func callbackHandler(w http.ResponseWriter, r *http.Request) {
+func callbackHandler(message *linebot.TextMessage, w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
 
 	if err != nil {
