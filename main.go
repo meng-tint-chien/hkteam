@@ -43,7 +43,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				if message.Text=="fuck"{
 					 jj:= rand.New(rand.NewSource(time.Now().UnixNano()))
 					guu=(jj.Intn(55))+44
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+guu+".jpg","https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+guu+".jpg")).Do(); err != nil {
+					str2:=strconv.Itoa(guu)
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewImageMessage("https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+str2+".jpg","https://fapality.com/contents/albums/main/680x9999/1000/1193/509"+str2+".jpg")).Do(); err != nil {
 						log.Print(err)
 					}
 				}
