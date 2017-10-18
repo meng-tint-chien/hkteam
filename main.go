@@ -9,6 +9,7 @@ import (
 	"math/rand"
  	"strconv"
 	"github.com/line/line-bot-sdk-go/linebot"
+	"github.com/PuerkitoBio/goquery"
 )
 
 var bot *linebot.Client
