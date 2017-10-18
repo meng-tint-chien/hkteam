@@ -23,6 +23,16 @@ func main() {
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
 }
+func GetJokes(){
+  doc, err := goquery.NewDocument("https://imgur.com/a/6FdES")
+  if err != nil{
+    log.Fatal(err)
+  }
+  doc.Find(".content").Each(func(i int, s *goquery.Selection){
+    fmt.Println(s.Text())
+  })
+}
+
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	var guu = 0
@@ -42,6 +52,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				if message.Text=="fuck"{
+				     GetJokes()
 					 jj:= rand.New(rand.NewSource(time.Now().UnixNano()))
 					guu=(jj.Intn(55))+44
 					str2:=strconv.Itoa(guu)
